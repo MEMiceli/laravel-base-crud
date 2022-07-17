@@ -40,13 +40,14 @@ class ProductController extends Controller
 
         $newProduct = new Product();
 
-            $newProduct->title = $data['title'];
-            $newProduct->description = $data['description'];
-            $newProduct->thumb = $data['thumb'];
-            $newProduct->price = $data['price'];
-            $newProduct->series = $data['series'];
-            $newProduct->sale_date = $data['sale_date'];
-            $newProduct->type = $data['type'];
+            // $newProduct->title = $data['title'];
+            // $newProduct->description = $data['description'];
+            // $newProduct->thumb = $data['thumb'];
+            // $newProduct->price = $data['price'];
+            // $newProduct->series = $data['series'];
+            // $newProduct->sale_date = $data['sale_date'];
+            // $newProduct->type = $data['type'];
+            $newProduct->fill($data);
             $newProduct->save(); 
 
             return redirect()->route('products.show', $newProduct->id);
@@ -70,9 +71,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -82,9 +83,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $data = $request->all();
+
+        $product->update($data);
+
+        return redirect()->route('products.show', $product->id);
     }
 
     /**

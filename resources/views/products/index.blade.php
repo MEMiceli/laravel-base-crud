@@ -31,7 +31,8 @@
                 <td>{{$product->price}}</td>
                 <td>{{$product->series}}</td>
                 <td>{{$product->type}}</td>
-                <td><a type="button" class="btn btn-outline-primary" href="{{route('products.show', $product->id)}}">Visualizza</a></td>
+                <td><a type="button" class="btn btn-outline-primary" href="{{route('products.show', $product->id)}}">View</a>
+                    <a type="button" class="btn btn-outline-danger" href="{{route('products.edit', $product->id)}}">Modify</a></td>
               </tr>  
             @endforeach
         </tbody>
