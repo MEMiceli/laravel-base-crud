@@ -32,8 +32,14 @@
                 <td>{{$product->series}}</td>
                 <td>{{$product->type}}</td>
                 <td><a type="button" class="btn btn-outline-primary" href="{{route('products.show', $product->id)}}">View</a>
-                    <a type="button" class="btn btn-outline-danger" href="{{route('products.edit', $product->id)}}">Modify</a></td>
-              </tr>  
+                    <a type="button" class="btn btn-outline-danger" href="{{route('products.edit', $product->id)}}">Modify</a>
+                    <form action="{{route('products.destroy', $product->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger">Delete</button> 
+                    </form>
+                </td>
+            </tr>  
             @endforeach
         </tbody>
       </table>
